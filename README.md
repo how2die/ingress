@@ -16,5 +16,7 @@ Install CustomResourceDefinitions and cert-manager:
 To deploy ClusterIssuer using Let's Encrypt, run:
 `kubectl apply -f cert-issuer.yaml`
 
-Apply ingresses:
+## Apply ingresses
+
+Run:
 `kubectl apply -f ingress.yaml`

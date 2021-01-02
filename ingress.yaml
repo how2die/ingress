@@ -1,0 +1,34 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: website-ingress
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      if ($host = "www.how2die.com") {
+          return 308 https://how2die.com$request_uri;
+      }
+spec:
+  tls:
+  - hosts:
+    - test.how2die.com
+    - www.how2die.com
+    - how2die.com
+    secretName: test-tls-certificate
+  rules:
+  - host: test.how2die.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: website
+            port: 
+              number: 80
+
+---
+

@@ -14,12 +14,10 @@ metadata:
 spec:
   tls:
   - hosts:
-    - test.how2die.com
-    - www.how2die.com
     - how2die.com
-    secretName: test-tls-certificate
+    secretName: website-tls-certificate
   rules:
-  - host: test.how2die.com
+  - host: how2die.com
     http:
       paths:
       - path: /
@@ -29,6 +27,5 @@ spec:
             name: website
             port: 
               number: 80
-
 ---
 

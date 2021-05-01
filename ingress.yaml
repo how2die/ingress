@@ -11,6 +11,7 @@ metadata:
       if ($host = "www.how2die.com") {
           return 308 https://how2die.com$request_uri;
       }
+    nginx.ingress.kubernetes.io/proxy-buffer-size: "8k"
 spec:
   tls:
   - hosts:

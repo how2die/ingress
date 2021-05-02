@@ -18,6 +18,16 @@ spec:
     - www.how2die.com
     secretName: website-tls-certificate
   rules:
+  - host: www.how2die.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: website
+            port: 
+              number: 80
   - host: how2die.com
     http:
       paths:

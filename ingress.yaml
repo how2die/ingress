@@ -38,11 +38,31 @@ spec:
             name: website
             port: 
               number: 80
-      - path: /api/messages
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: websocket-ingress
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
+spec:
+  tls:
+  - hosts:
+    - ws.how2die.com
+    secretName: websocket-tls-certificate
+  rules:
+  - host: ws.how2die.com
+    http:
+      paths:
+      - path: /
         pathType: Prefix
         backend:
           service:
-            name: message-server
+            name: message-backend
             port: 
               number: 8080
 ---

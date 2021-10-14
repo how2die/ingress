@@ -38,13 +38,6 @@ spec:
             name: website
             port: 
               number: 80
-      - path: /hack/
-        pathType: Prefix
-        backend:
-          service:
-            name: hack
-            port:
-              number: 80
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress

@@ -38,6 +38,16 @@ spec:
             name: website
             port: 
               number: 80
+  - host: how2die.com
+    http:
+      paths:
+      - path: /chan/api
+        pathType: Prefix
+        backend:
+          service:
+            name: chan-backend
+            port: 
+              number: 80
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
